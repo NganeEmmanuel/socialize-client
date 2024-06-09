@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-// import { getHome } from "../utils/ApiFunctions.js";
+//import React, { useState } from "react";
+import React from "react";
+//import { getHome } from "../utils/ApiFunctions.js";
 import Navbar from "./Navbar";
 import './Navbar.css';
 import {
@@ -12,7 +13,7 @@ import {
   LeftOverlayPanel,
   Overlay,
   OverlayContainer,
-  OverlayPanel,
+  
   Paragraph,
   RightOverlayPanel,
   SignInContainer,
@@ -25,7 +26,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const [signIn, toggle] = React.useState(true);
-  const [newHome, setNewHome] = useState("");
+  //const [newHome, setNewHome] = useState("");
 
   const images = imageList;
 
@@ -90,7 +91,7 @@ const Login = () => {
             key={index}
             className="image"
             src={image}
-            alt={`Inclined Image ${index + 1}`}
+            alt={`Inclined toff ${index + 1}`}
           />
         ))}
       </div>
