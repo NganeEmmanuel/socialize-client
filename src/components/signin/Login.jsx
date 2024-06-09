@@ -1,5 +1,7 @@
 import React from "react";
 // import { getHome } from "../utils/ApiFunctions.js";
+import Navbar from "./Navbar";
+import './Navbar.css';
 import {
   Anchor,
   Button,
@@ -26,6 +28,7 @@ const Login = () => {
   const images = imageList;
   return (
     <>
+    <Navbar />
       <Container>
         <SignUpContainer signinIn={signIn}>
           <Form>

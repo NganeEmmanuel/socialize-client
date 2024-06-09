@@ -10,6 +10,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
+    "resolve-url-loader": "^5.0.0",
     "sass": "^1.77.4",
     "styled-components": "^6.1.11",
     "web-vitals": "^3.5.0"
