@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React from "react";
 // import { getHome } from "../utils/ApiFunctions.js";
 import {
   Anchor,
@@ -78,6 +78,7 @@ const Login = () => {
             key={index}
             className="image"
             src={image}
+            alt="some-samples"
           />
         ))}
       </div>
