@@ -1,5 +1,6 @@
+//import React, { useState } from "react";
 import React from "react";
-// import { getHome } from "../utils/ApiFunctions.js";
+//import { getHome } from "../utils/ApiFunctions.js";
 import Navbar from "./Navbar";
 import './Navbar.css';
 import {
@@ -81,7 +82,7 @@ const Login = () => {
             key={index}
             className="image"
             src={image}
-            alt="some-samples"
+            alt={`Inclined toff ${index + 1}`}
           />
         ))}
       </div>
