@@ -20,16 +20,16 @@ body {
 
 .image-container {
     position: absolute;
-    top: 15%;
+    top: 5%;
     right: 10px;
-    width: 550px; 
-    height: 130%;
+    width: 500px; /* Adjust the width as needed */
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    grid-gap: 15px; 
+    grid-gap: 15px; /* Reduced the gap from 30px to 15px */
     justify-content: space-between;
-    padding: 15px; 
+    padding: 15px; /* Reduced the padding from 30px to 15px */
     overflow-y: auto;
     overflow-x: hidden;
   }
