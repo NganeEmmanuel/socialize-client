@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { getHome } from "../utils/ApiFunctions.js";
+import Navbar from "./Navbar";
+import './Navbar.css';
 import {
   Anchor,
   Button,
@@ -35,6 +37,7 @@ const Login = () => {
 
   return (
     <>
+    <Navbar />
       <Container>
         <SignUpContainer signinIn={signIn}>
           <Form>
