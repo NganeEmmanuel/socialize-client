@@ -13,7 +13,6 @@ import {
   LeftOverlayPanel,
   Overlay,
   OverlayContainer,
-  
   Paragraph,
   RightOverlayPanel,
   SignInContainer,
@@ -26,16 +25,8 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const [signIn, toggle] = React.useState(true);
-  //const [newHome, setNewHome] = useState("");
 
   const images = imageList;
-
-//   useEffect(() => {
-//     getHome().then((data) => {
-//       setNewHome(data);
-//     });
-//   }, []);
-
   return (
     <>
     <Navbar />
