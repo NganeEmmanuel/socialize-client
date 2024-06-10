@@ -13,7 +13,6 @@ import {
   LeftOverlayPanel,
   Overlay,
   OverlayContainer,
-  
   Paragraph,
   RightOverlayPanel,
   SignInContainer,
@@ -33,13 +32,6 @@ const Login = () => {
   //const [newHome, setNewHome] = useState("");
 
   const images = imageList;
-
-//   useEffect(() => {
-//     getHome().then((data) => {
-//       setNewHome(data);
-//     });
-//   }, []);
-
   return (
     <>
     <Navbar />
