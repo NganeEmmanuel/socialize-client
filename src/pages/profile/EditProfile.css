@@ -16,4 +16,6 @@ body {
     max-width: 800px;
     width: 90%;
   }
-  
+  .form-container {
+    width: 300%;
+  }
