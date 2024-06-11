@@ -1,3 +1,4 @@
+// src/pages/unauthorized/Unauthorized.jsx
 import { useNavigate } from "react-router-dom"
 
 const Unauthorized = () => {
@@ -17,4 +18,4 @@ const Unauthorized = () => {
     )
 }
 
-export default Unauthorized
+export default Unauthorized;

@@ -9,11 +9,8 @@ import LanguageIcon from "@mui/icons-material/Language";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Posts from "../../components/posts/Posts"
-import { useParams } from "react-router-dom";
 
 const Profile = () => {
-  let { id } = useParams();
-  console.log(id)
   return (
     <div className="profile">
       <div className="images">
