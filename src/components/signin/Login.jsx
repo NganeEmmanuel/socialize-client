@@ -1,7 +1,6 @@
-//import React, { useState } from "react";
-import React, { useState }from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
-import APIFunctions from "../../utils/APIFunctions.js";
+//import APIFunctions from "../../utils/APIFunctions.js";
 import Navbar from "./Navbar";
 import './Navbar.css';
 import {
@@ -22,7 +21,7 @@ import {
 } from "./Components.jsx";
 import "./Login.css";
 import { imageList } from "./images.js";
-//import { Link } from "react-router-dom";
+import AuthService from './AuthService';
 
 const Login = () => {
   const [signIn, toggle] = React.useState(true);
@@ -32,86 +31,81 @@ const Login = () => {
   const [signInError, setSignInError] = React.useState(null);
   const [/**user*/, setUser] = useState(null);
   const navigate = useNavigate();
-  //const [newHome, setNewHome] = useState("");
+
+  const fullnameRef = useRef(null);
+  const usernameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
   const images = imageList;
+
+  const handleSignup = async () => {
+    setIsSignUpLoading(true);
+
+    try {
+      const response = await AuthService.signup({
+        fullname: fullnameRef.current.value,
+        username: usernameRef.current.value,
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      });
+
+      // Handle successful signup
+      // Add any additional logic to handle successful signup
+    } catch (error) {
+      setSignUpError(error);
+    } finally {
+      setIsSignUpLoading(false);
+    }
+  };
+
+  const handleLogin = async () => {
+    setIsSignInLoading(true);
+
+    try {
+      const response = await AuthService.login({
+        username: usernameRef.current.value,
+        password: passwordRef.current.value,
+      });
+
+      // Update the application state with the user information
+      setUser(response.user);
+      navigate('/feed');
+    } catch (error) {
+      setSignInError(error);
+    } finally {
+      setIsSignInLoading(false);
+    }
+  };
+
   return (
     <>
-    <Navbar />
+      <Navbar />
       <Container>
         <SignUpContainer signinIn={signIn}>
           <Form>
             <Title>Create Account</Title>
-            <Input type="text" placeholder="FullName" />
-            <Input type="text" placeholder="UserName" />
-            <Input type="email" placeholder="Email" />
-            <Input type="password" placeholder="Password" />
-
-          <Button
-            onClick={() => {
-              setIsSignUpLoading(true);
-              const formData = {
-                fullname: '',
-                username: '',
-                email: '',
-                password: '',
-              };
-              APIFunctions.signup(formData)
-                .then((response) => {
-                  // Handle successful signup
-                  setIsSignUpLoading(false);
-                  // Add any additional logic to handle successful signup
-                })
-                .catch((error) => {
-                  // Handle signup error
-                  setSignUpError(error);
-                  setIsSignUpLoading(false);
-                });
-            }}
-            disabled={isSignUpLoading}
-          >
-            {isSignUpLoading ? 'Loading...' : 'Sign Up'}
-          </Button>
-          {signUpError && <div>Error: {signUpError.message}</div>}
-
+            <Input type="text" placeholder="FullName" ref={fullnameRef} />
+            <Input type="text" placeholder="UserName" ref={usernameRef} />
+            <Input type="email" placeholder="Email" ref={emailRef} />
+            <Input type="password" placeholder="Password" ref={passwordRef} />
+            <Button onClick={handleSignup} disabled={isSignUpLoading}>
+              {isSignUpLoading ? 'Loading...' : 'Sign Up'}
+            </Button>
+            {signUpError && <div>Error: {signUpError.message}</div>}
           </Form>
         </SignUpContainer>
 
         <SignInContainer signinIn={signIn}>
           <Form>
             <Title>Sign in</Title>
-            <Input type="text" placeholder="Username" />
-            <Input type="password" placeholder="Password" />
+            <Input type="text" placeholder="Username" ref={usernameRef} />
+            <Input type="password" placeholder="Password" ref={passwordRef} />
             <Anchor href="#">Forgot your password?</Anchor>
-
-          <Button
-            onClick={() => {
-              setIsSignInLoading(true);
-              const formData = {
-                username: '',
-                password: '',
-              };
-              APIFunctions.login(formData)
-                .then((response) => {
-                  // Handle successful login
-                  setIsSignInLoading(false);
-                  // Update the application state with the user information
-                  setUser(response.user);
-                  // Navigate the user to the feed page
-                  navigate('/feed');
-                })
-                .catch((error) => {
-                  // Handle login error
-                  setSignInError(error);
-                  setIsSignInLoading(false);
-                });
-            }}
-            disabled={isSignInLoading}
-          >
-            {isSignInLoading ? 'Loading...' : 'Sign In'}
-          </Button>
-          {signInError && <div>Error: {signInError.message}</div>}
-
+            <Button onClick={handleLogin} disabled={isSignInLoading}>
+              {isSignInLoading ? 'Loading...' : 'Sign In'}
+            </Button>
+            {signInError && <div>Error: {signInError.message}</div>}
           </Form>
         </SignInContainer>
 
@@ -146,10 +140,6 @@ const Login = () => {
           />
         ))}
       </div>
-
-      {/* <div>
-        <h1>{newHome}</h1>
-      </div> */}
     </>
   );
 };
