@@ -1,48 +1,89 @@
 .navbar {
-    background-color: #333;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  background-image: linear-gradient(to right, #333, #800080, #333);
+  background-size: 200% 200%;
+  animation: gradientAnimation 10s ease infinite;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
   }
-  
-  .navbar-brand a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: bold;
-    transition: color 0.3s ease; 
+  50% {
+    background-position: 100% 50%;
   }
-  
-  .navbar-brand a:hover {
-    color: #ccc; 
+  100% {
+    background-position: 0% 50%;
   }
-  
-  .navbar-nav {
-    list-style: none;
-    display: flex;
+}
+
+.navbar-brand a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand a:hover {
+  color: #ccc;
+}
+
+.navbar-nav {
+  list-style: none;
+  display: flex;
+}
+
+.nav-item {
+  margin-left: 1rem;
+}
+
+.nav-item a {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease, opacity 0.5s ease;
+  opacity: 1;
+}
+
+.nav-item a:hover {
+  background-color: #800080;
+  color: #fff;
+}
+
+.nav-item a.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.nav-item a.fade-out {
+  animation: fadeOut 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .nav-item {
-    margin-left: 1rem;
+  to {
+    opacity: 1;
   }
-  
-  .nav-item a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease; 
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
   }
-  
-  .nav-item a:hover {
-    background-color: #800080; 
-    color: #fff; 
+  to {
+    opacity: 0;
   }
+}
