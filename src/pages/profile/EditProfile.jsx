@@ -53,3 +53,8 @@ const App = () => {
               onChange={(e) => setUsername(e.target.value)}
               required
             />
+            </div>
+          <div className="form-group">
+            <label htmlFor="bio">Bio:</label>
+            <textarea id="bio" value={bio} onChange={(e) => setBio(e.target.value)} required></textarea>
+          </div>
