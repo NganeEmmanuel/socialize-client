@@ -42,7 +42,6 @@ const App = () => {
               onChange={(e) => setName(e.target.value)}
               required
            />
-             />
           </div>
           <div className="form-group">
             <label htmlFor="username">Username:</label>
@@ -58,3 +57,17 @@ const App = () => {
             <label htmlFor="bio">Bio:</label>
             <textarea id="bio" value={bio} onChange={(e) => setBio(e.target.value)} required></textarea>
           </div>
+          <div className="form-group">
+            <label htmlFor="gender">Gender:</label>
+            <select id="gender" value={gender} onChange={(e) => setGender(e.target.value)} required>
+              <option value="">Select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
