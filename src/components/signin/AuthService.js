@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://socialize-client-production.up.railway.app';
+const baseURL = 'http://localhost:8080';
 
 const api = axios.create({
   baseURL,
@@ -13,7 +13,19 @@ class AuthService {
   static async signup(data) {
     try {
       const response = await api.post('/api/v1/auth/signup', data);
-      return response.data;
+
+      if (response.status === 200) {
+      console.log('Signup token:', response.data.token);
+        // Save the JWT token in local storage
+       localStorage.setItem('token', response.data.token);
+
+        // Set the authorization header for future requests
+        this.setAuthorizationHeader(response.data.token);
+
+        return response.data;
+      } else {
+        throw new Error(response.data.error);
+      }
     } catch (error) {
       throw error;
     }
@@ -23,9 +35,18 @@ class AuthService {
     try {
       const response = await api.post('/api/v1/auth/login', data);
 
-      localStorage.setItem('token', response.data.token);
-      api.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-      return response.data;
+      if (response.status === 200) {
+        console.log('Login token:', response.data.token);
+        // Save the JWT token in local storage
+        localStorage.setItem('token', response.data.token);
+
+        // Set the authorization header for future requests
+        this.setAuthorizationHeader(response.data.token);
+
+        return response.data;
+      } else {
+        throw new Error(response.data.error);
+      }
     } catch (error) {
       throw error;
     }
@@ -33,7 +54,6 @@ class AuthService {
 
   static async logout() {
     try {
-
       localStorage.removeItem('token');
       delete api.defaults.headers.common['Authorization'];
     } catch (error) {
@@ -48,12 +68,16 @@ class AuthService {
         return null;
       }
 
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      this.setAuthorizationHeader(token);
       const response = await api.get('/me');
       return response.data;
     } catch (error) {
       throw error;
     }
+  }
+
+  static setAuthorizationHeader(token) {
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   }
 }
 
