@@ -12,23 +12,23 @@ import RightBar from "./components/rightBar/RightBar";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 import "./style.scss";
+import { AuthProvider } from "./hooks/useAuth"; // Import AuthProvider
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 
 function App() {
-  const {currentUser} = useContext(AuthContext);
-
+  const { currentUser } = useContext(AuthContext);
   const { darkMode } = useContext(DarkModeContext);
 
-  const Layout = () => {
+  const Layout = ({ children }) => {
     return (
       <div className={`theme-${darkMode ? "dark" : "light"}`}>
         <Navbar />
         <div style={{ display: "flex" }}>
           <LeftBar />
           <div style={{ flex: 6 }}>
-            <Outlet />
+            {children}
           </div>
           <RightBar />
         </div>
@@ -40,7 +40,6 @@ function App() {
     if (!currentUser) {
       return <Navigate to="/login" />;
     }
-
     return children;
   };
 
@@ -48,20 +47,8 @@ function App() {
     {
       path: "/",
       element: (
-        <ProtectedRoute>
-          <Layout />
-        </ProtectedRoute>
+        <Navigate to="/login" /> // Redirect to login page by default
       ),
-      children: [
-        {
-          path: "/",
-          element: <Home />,
-        },
-        {
-          path: "/profile/:id",
-          element: <Profile />,
-        },
-      ],
     },
     {
       path: "/login",
@@ -71,12 +58,34 @@ function App() {
       path: "/register",
       element: <Register />,
     },
+    {
+      path: "/home",
+      element: (
+        <ProtectedRoute>
+          <Layout>
+            <Home />
+          </Layout>
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/profile/:id",
+      element: (
+        <ProtectedRoute>
+          <Layout>
+            <Profile />
+          </Layout>
+        </ProtectedRoute>
+      ),
+    },
   ]);
 
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+    <AuthProvider> {/* Wrap the RouterProvider with AuthProvider */}
+      <div>
+        <RouterProvider router={router} />
+      </div>
+    </AuthProvider>
   );
 }
 
