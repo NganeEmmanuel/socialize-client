@@ -29,10 +29,11 @@ const Login = () => {
   const [isSignInLoading, setIsSignInLoading] = React.useState(false);
   const [signUpError, setSignUpError] = React.useState(null);
   const [signInError, setSignInError] = React.useState(null);
-  const [/**user*/, setUser] = useState(null);
+  const [/**user*/, /**setUser*/] = useState(null);
   const navigate = useNavigate();
 
   const fullnameRef = useRef(null);
+  const signUpusernameRef = useRef(null);
   const usernameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -41,19 +42,32 @@ const Login = () => {
 
   const handleSignup = async () => {
     setIsSignUpLoading(true);
-
+  
     try {
       const response = await AuthService.signup({
-        fullname: fullnameRef.current.value,
-        username: usernameRef.current.value,
+        name: fullnameRef.current.value,
+        username: signUpusernameRef.current.value,
         email: emailRef.current.value,
         password: passwordRef.current.value,
       });
-
-      // Handle successful signup
-      // Add any additional logic to handle successful signup
+  
+      if (response.status === 200) {
+        // Log the JWT token to the console
+        console.log('Signup token:', response.data.token);
+  
+        // Save the JWT token in local storage
+        localStorage.setItem('token', response.data.token);
+  
+        // Set the authorization header for future requests
+        AuthService.setAuthorizationHeader(response.data.token);
+  
+        // Redirect the user to the feed
+        navigate('/feed');
+      } else {
+        setSignUpError(response.error);
+      }
     } catch (error) {
-      setSignUpError(error);
+      setSignUpError(error.message);
     } finally {
       setIsSignUpLoading(false);
     }
@@ -61,18 +75,27 @@ const Login = () => {
 
   const handleLogin = async () => {
     setIsSignInLoading(true);
-
+  
     try {
       const response = await AuthService.login({
         username: usernameRef.current.value,
         password: passwordRef.current.value,
       });
-
-      // Update the application state with the user information
-      setUser(response.user);
-      navigate('/feed');
+  
+      if (response.status === 200) {
+        // Save the JWT token in local storage
+        localStorage.setItem('token', response.data.token);
+  
+        // Set the authorization header for future requests
+        AuthService.setAuthorizationHeader(response.token);
+  
+        // Redirect the user to the feed
+        navigate('/feed');
+      } else {
+        setSignInError(response.error);
+      }
     } catch (error) {
-      setSignInError(error);
+      setSignInError(error.message);
     } finally {
       setIsSignInLoading(false);
     }
@@ -86,7 +109,7 @@ const Login = () => {
           <Form>
             <Title>Create Account</Title>
             <Input type="text" placeholder="FullName" ref={fullnameRef} />
-            <Input type="text" placeholder="UserName" ref={usernameRef} />
+            <Input type="text" placeholder="UserName" ref={signUpusernameRef} />
             <Input type="email" placeholder="Email" ref={emailRef} />
             <Input type="password" placeholder="Password" ref={passwordRef} />
             <Button onClick={handleSignup} disabled={isSignUpLoading}>
