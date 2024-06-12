@@ -9,17 +9,18 @@ const api = axios.create({
   },
 });
 
-export const login = async (username, password) => {
+export async function login(data) {
   try {
-    const response = await api.get('/api/v1/auth/login', { username, password });
-    const { token } = response.data; // Extract the token correctly from response data
-    localStorage.setItem('token', token); // Store the token in local storage
-    return true; // Return true on successful login
+    const response = await api.post('/api/v1/auth/login', data); // Change api.get to api.post
+    const { token } = response.data;
+    localStorage.setItem('token', token);
+    return response; // Return the response object on successful login
   } catch (error) {
     console.error("Login failed:", error);
-    return false; // Return false on login failure
+    throw new Error("Unable to Login because: " + error.message);
   }
 };
+
 
 export async function signup(data) {
   try {
@@ -32,7 +33,7 @@ export async function signup(data) {
   }
 };
 
-export async function getLoggedInUserByUsername(username){
+export async function getLoggedInUserByUsername(username) {
   try {
     const response = await api.get('/api/v1/user/getUser', { params: { username } });
     return response.data;

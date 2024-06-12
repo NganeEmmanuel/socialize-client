@@ -42,7 +42,7 @@ const Navbar = () => {
           {currentUser && (
             <>
               <img src={currentUser.profilePic} alt="User" />
-              <span>{currentUser.name}</span>
+              <span>{currentUser.name}</span> {/* Display user's name */}
             </>
           )}
         </div>

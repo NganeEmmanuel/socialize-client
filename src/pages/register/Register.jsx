@@ -19,14 +19,14 @@ const Signup = () => {
       username: username,
       password: password
     };
-    console.log(data);
+
     try {
-      const rep = await signup(data);
-      if (rep.status === 200) {
+      const response = await signup(data);
+      if (response.status === 200) {
         setMessage("Successfully registered! Redirecting to login...");
         setTimeout(() => {
           navigate("/login");
-        }, 5000); // Redirect after 5 seconds
+        }, 3000); // Redirect after 3 seconds
       } else {
         setMessage("Registration failed. Please try again.");
       }
@@ -52,13 +52,37 @@ const Signup = () => {
         <div className="right">
           <h1>Register</h1>
           <form onSubmit={handleSignup}>
-            <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
             <button type="submit">Register</button>
           </form>
-          {message && <p>{message}</p>} {/* Display success or error message */}
+          {message && (
+            <p style={{ color: message.includes("Successfully") ? "green" : "red" }}>
+              {message}
+            </p>
+          )}
         </div>
       </div>
     </div>
