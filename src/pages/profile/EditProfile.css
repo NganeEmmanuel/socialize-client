@@ -53,4 +53,29 @@ body {
     text-align: right;
   }
   
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    border: 1px solid #d8bfd8 ;
+    border-radius: 6px;
+    font-size: 16px;
+    padding: 6px 10px;
+    width: 100%;
+    max-width: 450px;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+  }
   
