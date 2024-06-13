@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
-import { login } from "../../utils/APIFunctions";
+import { login as loginUser } from "../../utils/APIFunctions";
 import "./login.scss";
 
 const Login = () => {
@@ -13,19 +13,13 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const data = {
-      username: username,
-      password: password,
-    };
+    const data = { username, password };
 
     try {
-      const response = await login(data);
+      const response = await loginUser(data);
       if (response.status === 200) {
         authLogin(response.data); // Update currentUser in AuthContext upon successful login
-        setMessage("Successfully logged in! Redirecting...");
-        setTimeout(() => {
-          navigate("/"); // Redirect to home page after successful login
-        }, 3000);
+        navigate("/"); // Redirect to home page after successful login
       } else {
         setMessage("Login failed. Please try again.");
       }
