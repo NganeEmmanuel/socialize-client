@@ -8,9 +8,12 @@ import PlaceIcon from "@mui/icons-material/Place";
 import LanguageIcon from "@mui/icons-material/Language";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Posts from "../../components/posts/Posts"
+import Posts from "../../components/posts/Posts";
+import FollowComponent from "../../components/followComponent/FollowComponent";
 
 const Profile = () => {
+  const currentUserId = 'user123'; // Replace with the actual user ID
+
   return (
     <div className="profile">
       <div className="images">
@@ -56,14 +59,14 @@ const Profile = () => {
                 <span>lama.dev</span>
               </div>
             </div>
-            <button>follow</button>
+            <FollowComponent userId={currentUserId} />
           </div>
           <div className="right">
             <EmailOutlinedIcon />
             <MoreVertIcon />
           </div>
         </div>
-      <Posts/>
+        <Posts />
       </div>
     </div>
   );
