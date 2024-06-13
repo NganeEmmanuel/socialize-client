@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://socialize-client-production.up.railway.app';
+const baseURL = 'https://socialize-production.up.railway.app';
 
 const api = axios.create({
   baseURL,
