@@ -12,14 +12,17 @@ import RightBar from "./components/rightBar/RightBar";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 import "./style.scss";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 
 function App() {
-  const {currentUser} = useContext(AuthContext);
-
+  const { currentUser, checkAuth } = useContext(AuthContext);
   const { darkMode } = useContext(DarkModeContext);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   const Layout = () => {
     return (

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'https://socialize-client-production.up.railway.app';
+const baseURL = 'http://localhost:8080';
 
 const api = axios.create({
   baseURL,
@@ -24,8 +24,7 @@ export async function login(data) {
 
 export async function signup(data) {
   try {
-    const response = await api.post('/api/v1/auth/signup', data);
-    const { token } = response.data; // Extract the token correctly from response data
+    const response = await api.post('/api/v1/auth/signup', data); // Extract the token correctly from response data
     return response; // Return the response object on successful signup
   } catch (error) {
     console.error("Registration failed:", error);
@@ -35,7 +34,7 @@ export async function signup(data) {
 
 export async function getLoggedInUserByUsername(username) {
   try {
-    const response = await api.get('/api/v1/user/getUser', { params: { username } });
+    const response = await api.get('/api/v1/user/get-user', { params: { username } });
     return response.data;
   } catch (error) {
     console.error("Fetching user data failed:", error);
