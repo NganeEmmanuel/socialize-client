@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'https://socialize-client-production.up.railway.app';
+const BASE_URL = 'http://localhost:3000';
 
 export default axios.create({
     baseURL: BASE_URL

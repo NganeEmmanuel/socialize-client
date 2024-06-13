@@ -1,21 +1,10 @@
-import { createContext, useContext, useState } from "react";
+import { useContext, useDebugValue } from "react";
+import AuthContext from "../context/AuthProvider";
 
-const AuthContext = createContext();
+const useAuth = () => {
+    const { auth } = useContext(AuthContext);
+    useDebugValue(auth, auth => auth?.user ? "Logged In" : "Logged Out")
+    return useContext(AuthContext);
+}
 
-export const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState(null);
-
-  return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
-
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+export default useAuth;
