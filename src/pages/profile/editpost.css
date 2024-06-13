@@ -34,3 +34,56 @@
     flex-grow: 1;
     padding: 32px;
   }
+  .post-preview {
+    flex-basis: 60%;
+    margin-right: 32px;
+  }
+  
+  .post-video {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+  }
+  
+  .post-info {
+    flex-basis: 40%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .post-caption,
+  .post-music,
+  .post-length {
+    margin-bottom: 24px;
+  }
+  
+  .caption-input,
+  .music-input,
+  .length-input {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    padding: 12px 16px;
+    border-radius: 999px;
+    width: 100%;
+  }
+  
+  .caption-input::placeholder,
+  .music-input::placeholder,
+  .length-input::placeholder {
+    color: #999;
+  }
+  
+  .music-input-container,
+  .length-input-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .music-input-container i,
+  .length-input-container i {
+    margin-right: 8px;
+    color: #999;
+  }
