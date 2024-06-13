@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-
-
-
 const baseURL = 'https://socialize-production.up.railway.app';
 
 
@@ -42,5 +39,5 @@ export async function getLoggedInUserByUsername(username) {
   } catch (error) {
     console.error("Fetching user data failed:", error);
     throw new Error("Unable to fetch user data because: " + error.message);
-  
+  } 
 }
