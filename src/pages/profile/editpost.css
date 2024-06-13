@@ -18,3 +18,19 @@
     display: flex;
     align-items: center;
   }
+  .back-button,
+  .save-button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 16px;
+  }
+
+  
+  .edit-post-content {
+    display: flex;
+    flex-grow: 1;
+    padding: 32px;
+  }
