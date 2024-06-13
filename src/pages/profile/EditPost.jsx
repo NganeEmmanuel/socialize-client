@@ -23,4 +23,11 @@ const EditPost = ({ post, onSave }) => {
           <button className="save-button" onClick={handleSave}>
             Post
           </button>
-          
+          </div>
+      </div>
+      <div className="edit-post-content">
+        <div className="post-preview">
+          <video className="post-video" controls>
+            <source src={post?.videoUrl} type="video/mp4" />
+          </video>
+        </div>
