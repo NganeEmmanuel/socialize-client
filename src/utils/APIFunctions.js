@@ -25,7 +25,6 @@ export async function login(data) {
 export async function signup(data) {
   try {
     const response = await api.post('/api/v1/auth/signup', data);
-    const { token } = response.data; // Extract the token correctly from response data
     return response; // Return the response object on successful signup
   } catch (error) {
     console.error("Registration failed:", error);
