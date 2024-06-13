@@ -22,8 +22,8 @@ import {
 } from "./Components.jsx";
 import "./Login.css";
 import { imageList } from "./images.js";
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useRef, useState, useEffect } from 'react';
+import {  useLocation } from 'react-router-dom';
+import { useRef, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
 import axios from '../../api/axios';
 
