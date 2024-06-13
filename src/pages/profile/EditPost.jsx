@@ -31,3 +31,45 @@ const EditPost = ({ post, onSave }) => {
             <source src={post?.videoUrl} type="video/mp4" />
           </video>
         </div>
+        <div className="post-info">
+          <div className="post-caption">
+            <textarea
+              className="caption-input"
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
+              placeholder="Add caption"
+            />
+          </div>
+          <div className="post-music">
+            <div className="music-input-container">
+              <i className="fas fa-music"></i>
+              <input
+                className="music-input"
+                type="text"
+                value={music}
+                onChange={(e) => setMusic(e.target.value)}
+                placeholder="Add music"
+              />
+            </div>
+
+            <div className="privacy">
+            <label htmlFor="privacy">Privacy:</label>
+            <select id="privacy" value={privacy} onChange={(e) => setPrivacy(e.target.value)} required>
+              <option value="">Select privacy</option>
+              <option value="everyone">Everyone</option>
+              <option value="friends">Friends</option>
+              <option value="only me">Only me</option>
+            </select>
+          </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  );
+
+};
+
+export default EditPost;
