@@ -47,6 +47,7 @@ const FollowComponent = ({ userId, currentUserId }) => {
     }
   };
 
+  
   return (
     <div>
       {isFollowing ? (
