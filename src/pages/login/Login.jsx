@@ -47,12 +47,14 @@ const Login = () => {
               type="text"
               placeholder="Username"
               value={username}
+              required
               onChange={(e) => setUsername(e.target.value)}
             />
             <input
               type="password"
               placeholder="Password"
               value={password}
+              required
               onChange={(e) => setPassword(e.target.value)}
             />
             <button type="submit">Login</button>
