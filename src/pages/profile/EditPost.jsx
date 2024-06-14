@@ -58,7 +58,14 @@ const EditPost = ({ post, onSave }) => {
               <option value="everyone">Everyone</option>
               <option value="friends">Friends</option>
               <option value="only me">Only me</option>
-             
+              </select>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   );
 
 };
