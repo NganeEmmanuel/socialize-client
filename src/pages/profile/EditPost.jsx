@@ -53,8 +53,7 @@ const EditPost = ({ post, onSave }) => {
             </div>
             <div className="privacy">
             <label htmlFor="privacy">Privacy:</label>
-            <select id="privacy" value={privacy} onChange={(e) => setPrivacy(e.target.value)} required>
-              
+           
 
           </div>
           </div>
