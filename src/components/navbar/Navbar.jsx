@@ -39,11 +39,12 @@ const Navbar = () => {
         <EmailOutlinedIcon />
         <NotificationsOutlinedIcon />
         <div className="user">
-          <img
-            src={currentUser.profilePic}
-            alt=""
-          />
-          <span>{currentUser.name}</span>
+          {currentUser && (
+            <>
+              <img src={currentUser.profilePic} alt="User" />
+              <span>{currentUser.name}</span> {/* Display user's name */}
+            </>
+          )}
         </div>
       </div>
     </div>

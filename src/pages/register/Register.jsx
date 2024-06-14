@@ -1,26 +1,38 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import "./register.scss";
+import { Link, useNavigate } from "react-router-dom";
+import { signup } from "../../utils/APIFunctions";
+import "./register.scss"; // Import the styles
 
-const Register = () => {
+const Signup = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const navigate = useNavigate();
+  const [message, setMessage] = useState(""); // State to hold success or error messages
 
-  const handleRegister = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    try {
-      // Add your registration API call here
-      // For example:
-      // await api.register({ username, email, password, name });
+    const data = {
+      name: name,
+      email: email,
+      username: username,
+      password: password
+    };
 
-      // Redirect to login page on successful registration
-      navigate("/login");
+    try {
+      const response = await signup(data);
+      if (response.status === 200) {
+        setMessage("Successfully registered! Redirecting to login...");
+        setTimeout(() => {
+          navigate("/login");
+        }, 3000); // Redirect after 3 seconds
+      } else {
+        setMessage("Registration failed. Please try again.");
+      }
     } catch (error) {
-      // Handle registration error
       console.error("Registration failed:", error);
+      setMessage("Registration failed. Please try again.");
     }
   };
 
@@ -28,9 +40,9 @@ const Register = () => {
     <div className="register">
       <div className="card">
         <div className="left">
-          <h1>social</h1>
+          <h1>Social</h1>
           <p>
-            Become social with the socialise social media web, meet people, interact with them, and have fun.
+            Become social with the Socialise social media web, meet people, interact with them, and have fun.
           </p>
           <span>Do you have an account?</span>
           <Link to="/login">
@@ -39,7 +51,7 @@ const Register = () => {
         </div>
         <div className="right">
           <h1>Register</h1>
-          <form onSubmit={handleRegister}>
+          <form onSubmit={handleSignup}>
             <input
               type="text"
               placeholder="Username"
@@ -66,10 +78,15 @@ const Register = () => {
             />
             <button type="submit">Register</button>
           </form>
+          {message && (
+            <p style={{ color: message.includes("Successfully") ? "green" : "red" }}>
+              {message}
+            </p>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
-export default Register;
+export default Signup;
