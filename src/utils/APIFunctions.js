@@ -14,7 +14,7 @@ export async function login(data) {
     const response = await api.post('/api/v1/auth/login', data);
     const { token, ...userData } = response.data;
     localStorage.setItem('token', token);
-    return { ...response, data: { token, ...userData } }; // Return the response object with user data
+    return { ...response, data: { token, ...userData } };
   } catch (error) {
     console.error("Login failed:", error);
     throw new Error("Unable to login because: " + error.message);
@@ -24,19 +24,24 @@ export async function login(data) {
 export async function signup(data) {
   try {
     const response = await api.post('/api/v1/auth/signup', data);
-    return response; // Return the response object on successful signup
+    return response;
   } catch (error) {
     console.error("Registration failed:", error);
     throw new Error("Unable to signup because: " + error.message);
   }
 }
 
-export async function getLoggedInUserByUsername(username) {
+export const getLoggedInUserByUsername = async (username, token) => {
   try {
-    const response = await api.get('/api/v1/user/get-user', { params: { username } });
+    console.log("Sending request with username:", username, "and token:", token); // Log parameters
+    const response = await api.get('/api/v1/user/get-user', {
+      params: { username },
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    console.log("Response data:", response.data); // Log response
     return response.data;
   } catch (error) {
     console.error("Fetching user data failed:", error);
     throw new Error("Unable to fetch user data because: " + error.message);
   }
-}
+};

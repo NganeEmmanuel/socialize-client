@@ -10,56 +10,59 @@ export const AuthContextProvider = ({ children }) => {
   );
 
   const login = async (userData) => {
-    const { username } = userData;
+    const { username, token } = userData;  // Ensure userData has both username and token
+    console.log("Logging in with username:", username, "and token:", token); // Log parameters
     try {
-      const userResponse = await getLoggedInUserByUsername(username);
+      const userResponse = await getLoggedInUserByUsername(username, token);  // Pass token as well
       const { id, name, profilePic } = userResponse;
       const user = {
         id,
         name,
         profilePic: profilePic || "https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        token: userData.token,
+        token,
       };
       setCurrentUser(user);
       localStorage.setItem("user", JSON.stringify(user));
-      localStorage.setItem("token", userData.token); // Store token in localStorage
+      localStorage.setItem("token", token); // Store token in localStorage
     } catch (error) {
       console.error("Fetching user data failed:", error);
-      // Handle the error if necessary
     }
   };
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setCurrentUser(null);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-  };
+  }, []);
 
   const checkAuth = useCallback(async () => {
     const token = localStorage.getItem("token");
-    if (token) {
+    if (token && !currentUser) {
       try {
-        const response = await axios.get('http://localhost:8080/api/v1/auth/validate', {
+        const response = await axios.get('http://localhost:8080/api/v1/user/get-user', {
           headers: { Authorization: `Bearer ${token}` }
         });
-        if (response.status === 200) {
-          const user = JSON.parse(localStorage.getItem("user"));
-          setCurrentUser(user);
-        } else {
-          logout();
-        }
+        const { id, name, profilePic } = response.data;
+        const user = {
+          id,
+          name,
+          profilePic: profilePic || "https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
+          token,
+        };
+        setCurrentUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
       } catch (error) {
-        console.error("Token validation failed:", error);
+        console.error("Fetching user data failed:", error);
         logout();
       }
-    } else {
+    } else if (!token) {
       logout();
     }
-  }, []);
+  }, [currentUser, logout]);
 
   useEffect(() => {
     checkAuth();
-  }, [checkAuth]);
+  }, [checkAuth, currentUser]);
 
   return (
     <AuthContext.Provider value={{ currentUser, login, logout, checkAuth }}>
