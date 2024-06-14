@@ -11,7 +11,7 @@ const Stories = () => {
     {
       id: 1,
       name: "Rosalina Joy",
-      img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+      img: "https://demo-source.imgix.net/puppy.jpg",
     },
     {
       id: 2,
@@ -21,12 +21,12 @@ const Stories = () => {
     {
       id: 3,
       name: "Zoe Dwane",
-      img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+      img: "https://demo-source.imgix.net/group_photo.jpg",
     },
     {
       id: 4,
       name: "Jane Doe",
-      img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+      img: "https://demo-source.imgix.net/model.jpg",
     },
   ];
 
