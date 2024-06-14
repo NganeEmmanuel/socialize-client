@@ -18,7 +18,7 @@ const Login = () => {
     try {
       const response = await loginUser(data);
       if (response.status === 200) {
-        authLogin(response.data); // Update currentUser in AuthContext upon successful login
+        await authLogin(response.data); // Update currentUser in AuthContext upon successful login
         navigate("/"); // Redirect to home page after successful login
       } else {
         setMessage("Login failed. Please try again.");

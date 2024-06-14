@@ -13,6 +13,11 @@
     min-height: 600px;
     overflow: hidden;
 
+    @media (max-width: 768px) {
+      width: 90%;
+      flex-direction: column;
+    }
+
     .left {
       flex: 1;
       background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)),
@@ -25,18 +30,34 @@
       gap: 30px;
       color: white;
 
+      @media (max-width: 768px) {
+        padding: 30px;
+        h1 {
+          font-size: 50px;
+          line-height: 50px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        padding: 20px;
+        h1 {
+          font-size: 40px;
+          line-height: 40px;
+        }
+      }
+
       h1 {
         font-size: 100px;
         line-height: 100px;
       }
-      
+
       p {
       }
 
       span {
         font-size: 14px;
       }
-      
+
       button {
         width: 50%;
         padding: 10px;
@@ -45,6 +66,10 @@
         color: rebeccapurple;
         font-weight: bold;
         cursor: pointer;
+
+        @media (max-width: 768px) {
+          width: 100%;
+        }
       }
     }
 
@@ -56,21 +81,37 @@
       gap: 50px;
       justify-content: center;
 
-      h1 {
-      color: #555;
+      @media (max-width: 768px) {
+        padding: 30px;
       }
-      
+
+      @media (max-width: 480px) {
+        padding: 20px;
+      }
+
+      h1 {
+        color: #555;
+      }
+
       form {
         display: flex;
         flex-direction: column;
         gap: 30px;
-        
+
         input {
-        border: none;
-        border-bottom: 1px solid lightgray;
-        padding: 20px 10px;
+          border: none;
+          border-bottom: 1px solid lightgray;
+          padding: 20px 10px;
+
+          @media (max-width: 768px) {
+            padding: 15px 10px;
+          }
+
+          @media (max-width: 480px) {
+            padding: 10px 5px;
+          }
         }
-        
+
         button {
           width: 50%;
           padding: 10px;
@@ -79,6 +120,10 @@
           color: white;
           font-weight: bold;
           cursor: pointer;
+
+          @media (max-width: 768px) {
+            width: 100%;
+          }
         }
       }
     }
