@@ -19,7 +19,7 @@ tags:
   ![feed](feed.png)
 - Ability top post
 - **Commenting**
-  ![commnet](commnet.png)
+  ![comment](comment.png)
 - 
 ## 💁‍♀️ How to use
 
@@ -33,4 +33,4 @@ If you want a more secluded community about your school friends and what dey do,
 
 **Link:**
 
-- [Website]([https://caddyserver.com/docs/caddyfile](https://socialize-client-production.up.railway.app/))
+- [Website](https://socialize-client-production.up.railway.app/)
