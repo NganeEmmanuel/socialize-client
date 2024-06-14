@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8080'; // Ensure the correct protocol and port
+
+const baseURL = 'https://socialize-production.up.railway.app';
+
 
 const api = axios.create({
   baseURL,
@@ -43,5 +45,9 @@ export const getLoggedInUserByUsername = async (username, token) => {
   } catch (error) {
     console.error("Fetching user data failed:", error);
     throw new Error("Unable to fetch user data because: " + error.message);
+<<<<<<< HEAD
   }
 };
+=======
+
+>>>>>>> a9379e80d2f536ad5c59374a2b61596b52761965
