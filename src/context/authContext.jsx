@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState, useCallback } from "react";
 import axios from 'axios';
+import { getLoggedInUserByUsername } from '../utils/APIFunctions';
 
 export const AuthContext = createContext();
 
@@ -8,10 +9,24 @@ export const AuthContextProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
-  const login = (userData) => {
-    setCurrentUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
-    localStorage.setItem("token", userData.token); // Store token in localStorage
+  const login = async (userData) => {
+    const { username } = userData;
+    try {
+      const userResponse = await getLoggedInUserByUsername(username);
+      const { id, name, profilePic } = userResponse;
+      const user = {
+        id,
+        name,
+        profilePic: profilePic || "https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        token: userData.token,
+      };
+      setCurrentUser(user);
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("token", userData.token); // Store token in localStorage
+    } catch (error) {
+      console.error("Fetching user data failed:", error);
+      // Handle the error if necessary
+    }
   };
 
   const logout = () => {
