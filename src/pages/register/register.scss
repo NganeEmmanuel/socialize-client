@@ -70,6 +70,7 @@
 
         @media (max-width: 768px) {
           width: 100%;
+          margin-top: 20px; /* Adjust margin as needed */
         }
       }
     }
@@ -125,6 +126,20 @@
           @media (max-width: 768px) {
             width: 100%;
           }
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      .left {
+        background: none; /* Remove background image on smaller screens */
+        align-items: center;
+        text-align: center;
+        padding: 30px;
+
+        h1 {
+          font-size: 50px;
+          line-height: 50px;
         }
       }
     }

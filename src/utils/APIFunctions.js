@@ -1,10 +1,6 @@
 import axios from 'axios';
 
-
-
-
-const baseURL = 'https://socialize-production.up.railway.app';
-
+const baseURL = 'http://localhost:8080'; // Ensure the correct protocol and port
 
 const api = axios.create({
   baseURL,
@@ -37,15 +33,15 @@ export async function signup(data) {
 
 export const getLoggedInUserByUsername = async (username, token) => {
   try {
-    console.log("Sending request with username:", username, "and token:", token); // Log parameters
+    // console.log("Sending request with username:", username, "and token:", token); // Log parameters
     const response = await api.get('/api/v1/user/get-user', {
       params: { username },
       headers: { Authorization: `Bearer ${token}` }
     });
-    console.log("Response data:", response.data); // Log response
+    // console.log("Response data:", response.data); // Log response
     return response.data;
   } catch (error) {
     console.error("Fetching user data failed:", error);
     throw new Error("Unable to fetch user data because: " + error.message);
   }
-}
+};
