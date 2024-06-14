@@ -70,4 +70,30 @@ const EditPost = ({ post, onSave }) => {
 
 };
 
+const onSavePost = (postId, updatedPost) => {
+   
+    fetch(`/api/v1/post/edit/${postId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        
+      },
+      body: JSON.stringify(updatedPost),
+    })
+      .then((response) => {
+        if (response.ok) {
+         
+          console.log(`Post with ID ${postId} has been updated.`);
+          
+        } else {
+         
+          console.error(`Error updating post with ID ${postId}: ${response.status}`);
+        }
+      })
+      .catch((error) => {
+        
+        console.error('Error updating post:', error);
+      });
+  };
+
 export default EditPost;

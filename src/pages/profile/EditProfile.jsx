@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import './App.css';
+import './editProfile.css';
 
-const App = () => {
+const EditProfile = () => {
+  
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [bio, setBio] = useState('');
   
   const [gender, setGender] = useState('');
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here
@@ -71,3 +72,5 @@ const App = () => {
     </div>
   );
 };
+
+export default EditProfile;
