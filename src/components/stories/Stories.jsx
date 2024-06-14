@@ -10,23 +10,23 @@ const Stories = () => {
   const stories = [
     {
       id: 1,
-      name: "Rosalina Joy",
-      img: "https://demo-source.imgix.net/puppy.jpg",
+      name: "John Doe",
+      img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
     },
     {
       id: 2,
-      name: "Rick Bell",
+      name: "John Doe",
       img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
     },
     {
       id: 3,
-      name: "Zoe Dwane",
-      img: "https://demo-source.imgix.net/group_photo.jpg",
+      name: "John Doe",
+      img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
     },
     {
       id: 4,
-      name: "Jane Doe",
-      img: "https://demo-source.imgix.net/model.jpg",
+      name: "John Doe",
+      img: "https://images.pexels.com/photos/13916254/pexels-photo-13916254.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
     },
   ];
 
