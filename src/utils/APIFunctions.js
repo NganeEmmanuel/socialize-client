@@ -44,4 +44,5 @@ export const getLoggedInUserByUsername = async (username, token) => {
   } catch (error) {
     console.error("Fetching user data failed:", error);
     throw new Error("Unable to fetch user data because: " + error.message);
-
+  }
+}
