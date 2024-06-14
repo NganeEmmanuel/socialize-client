@@ -52,15 +52,7 @@ const EditPost = ({ post, onSave }) => {
               />
             </div>
 
-            <div className="privacy">
-            <label htmlFor="privacy">Privacy:</label>
-            <select id="privacy" value={privacy} onChange={(e) => setPrivacy(e.target.value)} required>
-              <option value="">Select privacy</option>
-              <option value="everyone">Everyone</option>
-              <option value="friends">Friends</option>
-              <option value="only me">Only me</option>
-            </select>
-          </div>
+           
 
           </div>
         </div>
